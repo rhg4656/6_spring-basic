@@ -49,4 +49,50 @@ class BirdMapperTest {
         birdMapper.insert(birdVO);
     }
 
+    @Test
+    void updateByIdTest(){
+        int pk = 1;
+        int updatedAge = 10;
+
+        BirdVO vo =
+                BirdVO.builder()
+                        .id(pk)
+                        .age(updatedAge)
+                        .build();
+
+        BirdVO updateVO = birdMapper.selectById(pk);
+        updateVO.setAge(updatedAge);
+        birdMapper.updateById(updateVO);
+    }
+
+    @Test
+    void deleteByIdTest(){
+        birdMapper.deleteById(1);
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

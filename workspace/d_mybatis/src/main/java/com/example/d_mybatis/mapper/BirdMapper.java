@@ -20,4 +20,8 @@ public interface BirdMapper {
 
     void insert(BirdVO vo);
 
+    void updateById(BirdVO vo);
+
+    void deleteById(int id);
+
 }
