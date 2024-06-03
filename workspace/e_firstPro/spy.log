@@ -1,0 +1,35 @@
+[statement] | 78 ms | 
+    select
+        * 
+    from
+        product          
+    WHERE
+        name = 'Apple iPhone'
+[statement] | 97 ms | 
+    select
+        * 
+    from
+        product          
+    WHERE
+        name = 'Apple iPhone'
+[statement] | 119 ms | 
+    select
+        * 
+    from
+        product          
+    WHERE
+        name = 'Apple iPhone'
+[statement] | 76 ms | 
+    select
+        * 
+    from
+        product          
+    WHERE
+        name = 'Apple iPhone'
+[statement] | 101 ms | 
+    select
+        * 
+    from
+        product          
+    WHERE
+        name = 'Apple iPhone'
