@@ -68,6 +68,9 @@ public class SecurityConfig {
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, auth) -> {
+
+//            request.getSession().setAttribute("user", auth.getPrincipal());
+
             response.sendRedirect("/product/list");
         };
     }
