@@ -30,7 +30,8 @@
         <tbody id="boardList">
         <tr th:each="board : ${boards}" th:object="${board}">
             <td th:text="*{boardId}">1</td>
-            <td><a href="#" th:text="*{boardTitle}">게시글 제목1</a></td>
+            <td><a th:href="@{/board/detail/{boardId}(boardId=*{boardId})}"
+                   th:text="*{boardTitle} + (*{fileCount} > 0 ? '[첨부파일:' + *{fileCount} + ']' : '')"></a></td>
             <td th:text="*{name}">작성자1</td>
             <td th:text="*{boardViews}">10</td>
             <div th:if="*{boardRegisterDate == boardUpdateDate}">
