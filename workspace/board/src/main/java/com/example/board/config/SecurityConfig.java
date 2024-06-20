@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -24,6 +25,7 @@ public class SecurityConfig {
 //                .build();
 
         return http
+                .csrf(AbstractHttpConfigurer::disable)
                 // 요청에 대한 인증 및 인가를 설정.
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
@@ -37,8 +39,6 @@ public class SecurityConfig {
 
                 .logout(logout -> logout
                         .logoutSuccessHandler((request, response, authentication) -> {
-                            //
-//                            String clientId = request.getParameter("ClientId");
                             String clientId = "5618085d40e3ca0f01a1e415a47564bb";
                             String logoutRedirectUri = "http://localhost:8090";
                             String logoutUri = "https://kauth.kakao.com/oauth/logout?client_id=" + clientId + "&logout_redirect_uri=" + logoutRedirectUri;
