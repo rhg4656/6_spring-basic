@@ -63,7 +63,7 @@
                 <div class="uploadResult">
                     <ul>
                         <li th:each="file : ${files}">
-                            <a href="#" th:text="${file.originalFileName}" ></a>
+                            <a th:href="@{/download/{fileId}(fileId=${file.fileId})}" th:text="${file.originalFileName}" ></a>
                             <span th:text="${file.fileSize / 1024 + ' KB'}" ></span>
                         </li>
                     </ul>
