@@ -50,5 +50,5 @@ public interface BoardService {
     PagedResponse<BoardListDTO> selectAllByViews(int page, int pageSize);
 
     // 동적 쿼리
-    PagedResponse<BoardListDTO> selectD(int page, int pageSize, String sort);
+    PagedResponse<BoardListDTO> selectD(int page, int pageSize, String sort, String searchType, String search);
 }

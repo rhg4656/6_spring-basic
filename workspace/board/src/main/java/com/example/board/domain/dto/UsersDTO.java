@@ -14,5 +14,9 @@ public class UsersDTO {
     private String createAt;
     private String updateAt;
 
+    private String phoneNumber;
+    private String address;
+    private String role;
+
 
 }

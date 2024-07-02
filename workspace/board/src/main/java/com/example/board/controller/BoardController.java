@@ -1,12 +1,12 @@
 package com.example.board.controller;
 
-import com.example.board.domain.dto.BoardDTO;
-import com.example.board.domain.dto.BoardDetailDTO;
-import com.example.board.domain.dto.BoardListDTO;
-import com.example.board.domain.dto.FileDTO;
+import com.example.board.domain.dto.*;
 import com.example.board.domain.oauth.CustomOAuth2User;
+import com.example.board.domain.vo.UsersVO;
+import com.example.board.mapper.UsersMapper;
 import com.example.board.service.BoardService;
 import com.example.board.service.FileService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,6 +23,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final FileService fileService;
+    private final UsersMapper usersMapper;
 
     @GetMapping("/list")
     public String list(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
@@ -108,6 +109,38 @@ public class BoardController {
     public String rest() {
         return "board/restList";
     }
+
+    @GetMapping("/join")
+    public String join() {
+        return "board/joinForm";
+    }
+
+    @PostMapping("/join")
+    public String join(@RequestParam String phoneNumber,
+                       @RequestParam String address,
+                       @AuthenticationPrincipal CustomOAuth2User customOAuth2User) {
+
+        UsersDTO usersDTO = usersMapper.findByProviderId(customOAuth2User.getProviderId());
+
+        usersDTO.setRole("basic");
+        usersDTO.setPhoneNumber(phoneNumber);
+        usersDTO.setAddress(address);
+
+        usersMapper.insertNewUser(UsersVO.toEntity(usersDTO));
+
+        return "redirect:/board/list";
+    }
+
+    @GetMapping("login")
+    public String goForm(HttpSession session){
+
+        session.invalidate();
+
+        return "board/loginForm";
+    }
+
+
+
 
 
 }

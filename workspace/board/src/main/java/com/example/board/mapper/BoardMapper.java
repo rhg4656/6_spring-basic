@@ -45,5 +45,8 @@ public interface BoardMapper {
 
 
     // 동적 쿼리
-    List<BoardListDTO> selectD(int startRow, int endRow, String sort);
+    List<BoardListDTO> selectD(int startRow, int endRow, String sort, String searchType, String search);
+
+    // 동적 쿼리 시, 게시글 갯수
+    int countDBoard(String searchType, String search);
 }
