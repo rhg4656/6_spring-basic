@@ -32,3 +32,35 @@ develop --> 여러분들 개인의 작업물을 저장할 원격 저장소 브�
 10. git checkout develop
 11. git merge main
 12. git pull origin develop
+
+※ 주의 사항
+
+팀원이 pr 을 보낼 시, 본인이 작업하던 사항은 develop 브랜치에 push를 해놓아야한다.
+그렇게 해야지만, main에서 sync update 를 하고, develop 으로 변경 후 merge 를 하면 본인이 작업하던 걸 보호 할 수 있다.
+이걸 제대로 하지 않을 경우, 본인이 작업하던 코드가 날아갈 수도 있다.
+
+한 줄 요약. 팀원 pr 받기 전에, push 하기.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
