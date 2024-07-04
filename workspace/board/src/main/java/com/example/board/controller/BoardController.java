@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/board")
@@ -59,39 +57,17 @@ public class BoardController {
         return "board/write";
     }
 
-//    // 게시글 작성 처리
-//    @PostMapping("/write")
-//    public String write(BoardDTO board, @RequestParam("providerId") String providerId,
-//                        @RequestParam("boardfiles") List<MultipartFile> files) {
-//        System.out.println(providerId);
-//
-//        board.setProviderId(providerId);
-//
-//        boardService.saveBoard(board, files);
-//        return "redirect:/board/list";
-//  }
-
-
     // 게시글 작성 처리
-    // 서머 노트 테스트
     @PostMapping("/write")
     public String write(BoardDTO board, @RequestParam("providerId") String providerId,
                         @RequestParam("boardfiles") List<MultipartFile> files) {
-//        System.out.println(providerId);
-//        board.setProviderId(providerId);
+        System.out.println(providerId);
 
-        String content = board.getBoardContent();
+        board.setProviderId(providerId);
 
-        String srcPattern = "src\\s*=\\s*\"([^\"]+)\"";
-        Pattern pattern = Pattern.compile(srcPattern, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(content);
-
-        System.out.println(matcher.group(1));
-
-
-//        boardService.saveBoard(board, files);
-        return null;
-    }
+        boardService.saveBoard(board, files);
+        return "redirect:/board/list";
+  }
 
     // 게시글 상세보기
     @GetMapping("/detail/{boardId}")
@@ -117,7 +93,7 @@ public class BoardController {
 
     // 게시글 수정
     @PostMapping("/edit")
-    public String edit(BoardDTO board, List<MultipartFile> files) {
+    public String edit(BoardDTO board, @RequestParam("boardfiles") List<MultipartFile> files) {
         boardService.updateBoard(board, files);
 
         return "redirect:/board/detail/" + board.getBoardId();
